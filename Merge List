@@ -1,0 +1,135 @@
+         
+#include<bits/stdc++.h>
+using namespace std;
+#define ll          long long 
+#define ull         unsigned long long 
+#define ld          long double
+#define mp          map<ll,ll> 
+#define mpc         map<char,ll>
+#define mps         map<string,ll>
+#define pb          push_back
+#define pll         pair<ll,ll> 
+#define vll         vector<ll>
+#define vpll        vector<pair<ll,ll>>
+#define prq         priority_queue<ll>//max
+#define prqs        priority_queue<ll,vector<ll>,greater<ll>>//min
+#define m_p         make_pair
+#define ff          first
+#define ss          second
+#define b_s         binary_search
+#define l_b         lower_bound
+#define u_b         upper_bound
+#define l(i,s,e)  for(int i=s;i<e;i++)
+#define Test        ll t;cin>>t;while(t--)
+#define all(v)      v.begin(),v.end()
+#define mem(a,x)    memset(a,x,sizeof(a))
+#define ln          '\n'  
+#define yes cout<<"YES\n";
+#define no cout<<"NO\n";
+const ll mod =1e9+7;
+const ull INF=1e9;
+const ll  MOD =  998244353;
+const ll  N   =  2e5+7;
+ll FACT[201];
+void fast(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+}
+
+ll POW(ll x,ll y){
+      ll r=1;
+      for(; y ; x= (x % MOD * x % MOD ) % MOD  ,y>>=1)
+            if(y&1) r = (r % MOD * x % MOD) % MOD ;
+      return r;
+}
+
+bool isPrime(int n)
+{
+    // Corner cases
+    if (n <= 1)
+        return false;
+    if (n <= 3)
+        return true;
+  
+    // This is checked so that we can skip
+    // middle five numbers in below loop
+    if (n % 2 == 0 || n % 3 == 0)
+        return false;
+  
+    for (int i = 5; i * i <= n; i = i + 6)
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+  
+    return true;
+}
+int computeXOR(int n)
+{
+   
+  // If n is a multiple of 4
+  if (n % 4 == 0)
+    return n;
+ 
+  // If n%4 gives remainder 1
+  if (n % 4 == 1)
+    return 1;
+ 
+  // If n%4 gives remainder 2
+  if (n % 4 == 2)
+    return n + 1;
+ 
+  // If n%4 gives remainder 3
+  return 0;
+}
+ll fast_exp(ll base, ll exp) {
+    ll res=1;
+    while(exp>0) {
+       if(exp%2==1) res=(res*base)%(mod);
+       base=(base*base)%(mod);
+       exp/=2;
+    }
+    return res;
+}
+
+
+
+
+bool sortbysec(const pair<ll,ll> &a,
+              const pair<ll,ll> &b)
+{
+    return (a.second < b.second);
+}
+  
+
+ll modinv(ll n){
+    return fast_exp(n,mod-2);
+}
+
+
+int main(){
+
+ fast();
+
+ FACT[0]=1;
+  for(ll i=1;i<=200;i++){
+    FACT[i]=(FACT[i-1]*i)%mod;}
+
+ll t;
+cin>>t;
+while(t--){
+  ll n,m;
+  cin>>n>>m;
+  // ll k=(FACT[n]*FACT[m])%mod;
+ll ans=((FACT[n+m]*modinv(FACT[n])%mod)%mod*modinv(FACT[m])%mod)%mod;
+ 
+  cout<<ans<<endl;
+  }
+
+
+
+
+
+   
+
+
+}
+
